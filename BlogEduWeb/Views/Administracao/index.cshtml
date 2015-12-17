@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Administração";
+}
+
+<h2>Administração</h2>
+
+@Html.ActionLink("Novo Post", "CadastrarPost")
+
+<p>@Html.ActionLink("Listar Post", "Index", "Blog")</p>
+
+<h2>Usuário</h2>
+
+@Html.ActionLink("Novo Usuário", "CadastrarUsuario", "ContUsuario")
+
+<p>@Html.ActionLink("Listar Usuário", "Index", "ListaUsuarios")</p>

@@ -1,0 +1,18 @@
+﻿@model BlogEduWeb.Models.ContUsuario.ListarUsuariosViewModel
+
+@if (Model.TotalDePaginas > 1)
+{
+    var proximaPagina = Model.PaginaAtual + 1;
+    var paginaAnterior = Model.PaginaAtual - 1;
+
+    <div class="pagination">
+        @if (Model.PaginaAtual > 1)
+        {
+            @Html.ActionLink("Pagina Anterior", "Index", "ListaUsuarios", new { pagina = paginaAnterior }, new { rel = "prev" })
+        }
+        @if (Model.PaginaAtual < Model.TotalDePaginas)
+        {
+            @Html.ActionLink("Proxima Pagina", "Index", "ListaUsuarios", new { pagina = proximaPagina }, new { rel = "prev" })
+        }
+    </div>
+}

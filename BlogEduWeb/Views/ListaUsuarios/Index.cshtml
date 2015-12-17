@@ -1,0 +1,27 @@
+﻿@model BlogEduWeb.Models.ContUsuario.ListarUsuariosViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Views/Blog/Index.js")"></script>
+}
+
+<h2>Lista de Usuarios</h2>
+
+@foreach (var item in Model.Usuarios)
+{
+
+    <h2>@Html.ActionLink(item.Nome, "EditarUsuario", "ContUsuario", new { id = item.Id }, null)</h2>
+    <div>
+        <div class="icone-editar div-imagem"></div>
+        @Html.ActionLink("Editar", "EditarUsuario", "ContUsuario", new { id = item.Id }, null)
+        <div class="icone-excluir div-imagem"></div>
+        @Html.ActionLink("Excluir", "ExcluirUsuario", "ContUsuario", new { id = item.Id }, new { @class = "excluir-usuario" })
+    </div>
+
+}
+
+@Html.Partial("_Paginacao", Model)

@@ -1,0 +1,85 @@
+﻿@model BlogEduWeb.Models.Detalhes.DetalhesPostViewModel
+@{
+    ViewBag.Title = Model.Titulo;
+}
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Views/Blog/Index.js")"></script>
+}
+
+@using (@Html.BeginForm())
+{
+    <div>
+        <h1>@Model.Titulo</h1>
+        <div>
+            <div class="icone-calendario div-imagem"></div>
+            @Model.DataPublicacao.ToString("dd/MM/yyy HH:mm")
+
+            <div class="icone-autor div-imagem"></div>
+            @Model.Autor.ToString()
+            <div class="icone-comentario div-imagem"> </div>
+            @Html.ActionLink("0", "EditarPost", "Administracao", new { id = Model.id }, null)
+
+
+            @if (Request.IsAuthenticated)
+            {
+                <div class="icone-excluir div-imagem "></div>
+                        @Html.ActionLink("Excluir", "ExcluirPost", "Administracao", new { id = Model.id }, new { @class = "excluir-post" })
+            }
+        </div>
+
+        @Model.Descricao
+
+        <h3>Tags</h3>
+        <div class="form-group">
+            <ul id="resultado">
+                @if (Model.Tags != null)
+                {
+                    foreach (var item in Model.Tags)
+                    {
+                        <li>@Html.ActionLink(item, "Index", "Blog", new { tag = item }, null)</li>
+                        //http://localhost:54578/Blog/Index?tag=Ronaldinho Coral
+                        @*<li><span> @item</span><a tag="@item"></a></li>*@
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <h3>Novo Comentário</h3>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(x => x.id)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.ComentarioNome)
+                @Html.TextBoxFor(m => m.ComentarioNome, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ComentarioNome)
+            </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ComentarioEmail)
+                    @Html.TextBoxFor(m => m.ComentarioEmail, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ComentarioEmail)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ComentarioPaginaWeb)
+                    @Html.TextBoxFor(m => m.ComentarioPaginaWeb, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ComentarioPaginaWeb)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ComentarioDescricao)
+                    @Html.TextAreaFor(m => m.ComentarioDescricao, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ComentarioDescricao)
+                </div>
+
+                <p><input type="submit" value="Salvar" class="btn btn-primary"></p>
+        }
+    </div>
+
+}
