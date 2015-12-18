@@ -47,39 +47,7 @@
         </div>
     </div>
 
-    <div>
-        <h3>Novo Comentário</h3>
-        @using (Html.BeginForm())
-        {
-            @Html.ValidationSummary(true)
-            @Html.HiddenFor(x => x.id)
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.ComentarioNome)
-                @Html.TextBoxFor(m => m.ComentarioNome, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.ComentarioNome)
-            </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ComentarioEmail)
-                    @Html.TextBoxFor(m => m.ComentarioEmail, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.ComentarioEmail)
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ComentarioPaginaWeb)
-                    @Html.TextBoxFor(m => m.ComentarioPaginaWeb, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.ComentarioPaginaWeb)
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ComentarioDescricao)
-                    @Html.TextAreaFor(m => m.ComentarioDescricao, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.ComentarioDescricao)
-                </div>
-
-                <p><input type="submit" value="Salvar" class="btn btn-primary"></p>
-        }
-    </div>
-
+<div>
+    @Html.Partial("_PaginacaoPost", Model)
+</div>
 }

@@ -43,8 +43,8 @@ namespace BlogEduWeb.Models.Administracao
         [Required(ErrorMessage = "O campo Hora de Publicação é obrigatório.")]
         public DateTime HoraPublicacao { get; set; }
 
-        [DisplayName("Vísivel")]
-        [Required(ErrorMessage = "O campo Vísivel é obrigatório.")]
+        [DisplayName("Visível")]
+        [Required(ErrorMessage = "O campo Visível é obrigatório.")]
         public bool Visivel { get; set; }
 
         public List<string> Tags { get; set; }
